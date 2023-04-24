@@ -14,8 +14,10 @@
         android:text="Start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.468" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -42,7 +44,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/inputField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -57,15 +59,15 @@
         app:layout_constraintVertical_bias="0.221" />
 
     <TextView
-        android:id="@+id/countdown_timer"
+        android:id="@+id/myTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="This will be my output"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36"
-        tools:text="ff" />
+        app:layout_constraintVertical_bias="0.355" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
