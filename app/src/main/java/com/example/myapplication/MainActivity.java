@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "This button was clicked", Toast.LENGTH_SHORT).show();
-                textview.setText("the start button was clicked and this worked");
+//                String extracted_text = (String) input_field.getText();
+                textview.setText(input_field.getText());
             }
         });
 
