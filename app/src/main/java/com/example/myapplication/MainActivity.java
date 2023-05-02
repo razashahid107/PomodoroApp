@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.os.CountDownTimer;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.CountDownTimer;
+
 
 
 import android.util.Log;
@@ -33,12 +35,26 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.StartPause);
         button.setOnClickListener(new View.OnClickListener() { // this is running through the button variable we've set above
             @Override
+
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "This button was clicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "This button was clicked", Toast.LENGTH_SHORT).show();
 //                String extracted_text = (String) input_field.getText();
-                textview.setText(input_field.getText());
+//                textview.setText(input_field.getText());
+              new CountDownTimer(10000, 1000){
+
+                  public void onTick(long millisUntilFinished){
+                      textview.setText(String.valueOf(counter));
+                      counter++;
+                  }
+                  @Override
+                  public void onFinish() {
+                      textview.setText("Finish");
+                  }
+              }.start();
             }
         });
+
+
 
 //        textview.setText();
 
@@ -72,4 +88,8 @@ public class MainActivity extends AppCompatActivity {
 //        builder1.setCancelable(true);
 //        builder1.show();
 //    }
+// form a function which will return seconds as int
+// we will place this funciton in setText() field
 }
+
+
