@@ -22,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new CountDownTimer(5000, 1000){
+                new CountDownTimer(5000, 1000) {
                     public void onTick(long millisUntilFinished){
                         textview.setText(String.valueOf(counter));
-                        textview.setText("time left: " + millisUntilFinished /1000);
+                        textview.setText("time left: " + millisUntilFinished/1000);
                         counter++;
                     }
                     public void onFinish() {
