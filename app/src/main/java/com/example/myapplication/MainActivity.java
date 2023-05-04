@@ -17,12 +17,16 @@ public class MainActivity extends AppCompatActivity {
     public int counter;
 //    public long number;
     TextView textview;
-//    CharSequence x;
+    EditText input_space;
+//    public CharSequence user_time_input;
+//    public int user_time_input_int;
+    //    CharSequence x;
 //    int number;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        input_space = (EditText)findViewById(R.id.user_input);
         button = (Button) findViewById(R.id.StartPause);
         textview = (TextView)findViewById(R.id.countdown_timer);
         textview.setText("Touch start to start timer :)");
@@ -32,13 +36,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Timer has been created in a text view
         button.setOnClickListener(new View.OnClickListener() {
-//            public CharSequence x = textview.getText();
-//            public int number = Integer.parseInt(x);
+
             @Override
             public void onClick(View view) {
-
+                CharSequence user_time_input = input_space.getText(); // we get text from here
+                int user_time_input_int = Integer.parseInt(user_time_input.toString());
 //                Log.d(null, "this is my number" + number);
-                new CountDownTimer(10000, 1000) {
+                new CountDownTimer(user_time_input_int, 1000) {
                     public void onTick(long millisUntilFinished) {
 //                        textview.setText(String.valueOf(counter));
                         textview.setText("Time Left: " + millisUntilFinished/1000);
