@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 //    public long number;
     TextView textview;
     EditText input_space;
+    EditText input_space_min;
 //    public CharSequence user_time_input;
 //    public int user_time_input_int;
     //    CharSequence x;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         input_space = (EditText)findViewById(R.id.user_input);
+        input_space_min = (EditText)findViewById(R.id.user_input_min);
         button = (Button) findViewById(R.id.StartPause);
         textview = (TextView)findViewById(R.id.countdown_timer);
         textview.setText("Touch start to start timer :)");
@@ -36,13 +38,14 @@ public class MainActivity extends AppCompatActivity {
 
         // Timer has been created in a text view
         button.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 CharSequence user_time_input = input_space.getText(); // we get text from here
+                CharSequence user_time_input_min = input_space_min.getText();
                 int user_time_input_int = Integer.parseInt(user_time_input.toString());
+                int user_time_input_int_min = Integer.parseInt(user_time_input_min.toString());
 //                Log.d(null, "this is my number" + number);
-                new CountDownTimer(user_time_input_int, 1000) {
+                new CountDownTimer((user_time_input_int_min * 60*1000)+user_time_input_int*1000, 1000) {
                     public void onTick(long millisUntilFinished) {
 //                        textview.setText(String.valueOf(counter));
                         textview.setText("Time Left: " + millisUntilFinished/1000);
