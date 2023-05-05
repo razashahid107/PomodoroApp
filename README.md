@@ -1,2 +1,2 @@
 # PomodoroApp
-This is an Android App built to implement the usage of the very famous Pomodoro technique wherein the user is allowed to set timers of 25 minutes along with 5 minutes breaks.
+The user is allowed to set a timer for time of focus against breaks. The default time for focus against breaks is 25 minutes against 5. Happy working towards the app.
