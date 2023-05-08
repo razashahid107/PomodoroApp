@@ -77,5 +77,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.235" />
 
+    <TextView
+        android:id="@+id/timer_list"
+        android:layout_width="216dp"
+        android:layout_height="178dp"
+        android:text="TimerList"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.569"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.708"
+        tools:text="TimerList" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
