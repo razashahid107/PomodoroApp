@@ -18,10 +18,10 @@ public class MainActivity extends AppCompatActivity {
 //    public long number;
     TextView textview;
     EditText input_space;
+    TextView textview_sample;
     EditText input_space_min;
     boolean timer_check = false;
-
-    //    public CharSequence user_time_input;
+    //    public CharSequence user_time_input;x 
 //    public int user_time_input_int;
     //    CharSequence x;
 //    int number;
@@ -31,17 +31,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         input_space = (EditText)findViewById(R.id.user_input);
         input_space_min = (EditText)findViewById(R.id.user_input_min);
-        button = (Button) findViewById(R.id.StartPause);
+        button = (Button)findViewById(R.id.StartPause);
         textview = (TextView)findViewById(R.id.countdown_timer);
+        textview_sample = (TextView)findViewById(R.id.sample_space);
         textview.setText("Touch start to start timer :)");
         textview.setInputType(InputType.TYPE_CLASS_NUMBER);
 //        String z = null;
-
 
         // Timer has been created in a text view
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // change text of button to stop
+                button.setText("Stop");
+
                 CharSequence user_time_input = input_space.getText(); // we get text from here
                 CharSequence user_time_input_min = input_space_min.getText();
                 int user_time_input_int = Integer.parseInt(user_time_input.toString());
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                             timer_check = true;
 //                        textview.setText(String.valueOf(counter));
                             textview.setText("Time Left: " + millisUntilFinished/1000);
+//                            textview_sample.setText("hellooo");
                             counter++;
                         }
                         public void onFinish() {
@@ -64,9 +68,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }.start();
                 }
-
-
-
             }
         });
     }
