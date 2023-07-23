@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        input_space = (EditText) findViewById(R.id.user_input);//
+        input_space = (EditText) findViewById(R.id.user_input);
         input_space_min = (EditText) findViewById(R.id.user_input_min);
         button = (Button) findViewById(R.id.StartPause);
         textview = (TextView) findViewById(R.id.countdown_timer); // Timer exists in textview
