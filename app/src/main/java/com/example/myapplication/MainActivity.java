@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 int user_time_input_int = Integer.parseInt(input_space.getText().toString());
                 int user_time_input_int_min = Integer.parseInt(input_space_min.getText().toString());
                 Log.d("CLICK()", "you clicked the button again ");
-                counter = (user_time_input_int_min * 60*1000) + (user_time_input_int*1000);
+                counter =(user_time_input_int_min * 60*1000) + (user_time_input_int*1000);
 //                if (timer_check){
 //                    timer_check = false;
 //                    button.setText("START"); // change text of button to Start
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 //                else {
 //                    button.setText("STOP");
 //                    timer_check = true;
-                    Log.d("GETOUT", "The function is exiting and relooping");
+                    Log.d("VALUES", "Counter val received: " + counter);
                     new CountDownTimer(counter, 1000) {
                         public void onTick(long millisUntilFinished) {
 //                            onFinish();
@@ -77,17 +77,15 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d("onTick()", "Seconds left are "+ millisUntilFinished);
                                 textview.setText("Time Left: " + millisUntilFinished/1000);
                                 counter-=1000;
-                                Log.d("COUNTER", "counter out: "+counter);
-
+                                Log.d("COUNTER", "counter out: "+ counter);
                             }
                             else { // if timer_check=false run onFinish()
 //                                timer_check = false;
                                 button.setText("START"); // change text of button to Start
-                                onFinish();
+                                Log.d("COUNTER_finish", "counter: "+ counter);
+                                cancel();
+//                                onFinish();
                             }
-
-
-//                            onFinish();
                         }
                         public void onFinish() {
 //                            textview.setText("Finish");
