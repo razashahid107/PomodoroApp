@@ -13,6 +13,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button button;
+    private CountDownTimer break_timer;
+    private CountDownTimer timer;
+
+
     public int counter = 0; // used to record time
     TextView textview;
     EditText input_space;
@@ -47,16 +51,19 @@ public class MainActivity extends AppCompatActivity {
 //        }.start();
 //    }
     public void startBreakTimer() {
+        if (!break_check){
+            button.setText("START TIMER");
+            break_timer.cancel();
+        }
         int breakDuration = 5 * 60 * 1000; // 5 minutes in milliseconds
-        new CountDownTimer(breakDuration, 1000) {
+        break_timer = new CountDownTimer(breakDuration, 1000) {
             public void onTick(long millisUntilFinished) {
                 button.setText("END BREAK");
                 textview.setText("Break Time Left: " + millisUntilFinished / 1000);
             }
-
             public void onFinish() {
                 button.setText("START TIMER");
-                textview.setText("Timer Ended");
+                textview.setText("Break Ended");
             }
         }.start();
     }
@@ -75,7 +82,11 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                // break checks
+                if (break_check){ // this means the break is going on already and user wants it to end
+                    break_check = false;
+                    startBreakTimer();
+                }
                 // following condition exists for the second time when button is clicked
                 if (counter > 0 && timer_check == true) {
                     Log.d("COUNTER", "counter is:" + counter);
@@ -91,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 // Use inputs from user to input time
                 counter = (user_time_input_int_min * 60 * 1000) + (user_time_input_int * 1000); 
 
-                new CountDownTimer(counter, 1000) {
+                timer = new CountDownTimer(counter, 1000) {
                     public void onTick(long millisUntilFinished) {
                         if (timer_check) {
                             button.setText("END");
@@ -107,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     public void onFinish() {
 //                        textview.setText("Timer Ended");
+                        break_check=true;
                         startBreakTimer(); // Start the break timer automatically after the main timer ends
 
                     }
