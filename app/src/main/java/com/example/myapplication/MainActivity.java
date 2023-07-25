@@ -19,6 +19,47 @@ public class MainActivity extends AppCompatActivity {
     TextView textview_sample;
     EditText input_space_min;
     boolean timer_check = true; // determines whether timer is running or not. True by default so timer can run
+    boolean break_check = false;
+
+//    public void Break(){
+//        Log.d("Hey","hey there");
+//        new CountDownTimer(300000, 1000) {
+//            public void onTick(long millisUntilFinished) {
+//                if (timer_check) {
+//                    Log.d("Hey","this ran");
+//
+//                    button.setText("END BREAK");
+//                    textview.setText("Time Left: " + millisUntilFinished / 1000);
+//                    counter -= 1000;
+////                            Break();
+//                }
+//                else { // if timer_check=false run cancel()
+//                    button.setText("START TIMER"); // change text of button to Start
+////                    cancel();
+//                    onFinish();
+//
+//                }
+//            }
+//            public void onFinish() {
+//                onCreate(new Bundle());
+////                textview.setText("Timer Ended");
+//            }
+//        }.start();
+//    }
+    public void startBreakTimer() {
+        int breakDuration = 5 * 60 * 1000; // 5 minutes in milliseconds
+        new CountDownTimer(breakDuration, 1000) {
+            public void onTick(long millisUntilFinished) {
+                button.setText("END BREAK");
+                textview.setText("Break Time Left: " + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+                button.setText("START TIMER");
+                textview.setText("Timer Ended");
+            }
+        }.start();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
         
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { 
+            public void onClick(View view) {
+
                 // following condition exists for the second time when button is clicked
                 if (counter > 0 && timer_check == true) {
                     timer_check = false;
@@ -54,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                             button.setText("END");
                             textview.setText("Time Left: " + millisUntilFinished / 1000);
                             counter -= 1000;
+//                            Break();
                         } 
                         else { // if timer_check=false run cancel()
                             button.setText("START AGAIN"); // change text of button to Start
@@ -63,7 +106,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                     public void onFinish() {
                         textview.setText("Timer Ended");
+                        startBreakTimer(); // Start the break timer automatically after the main timer ends
+
                     }
+//                    public void Break(){
+//                        onTick(300000);
+//                    }
                 }.start();
             }
         });
