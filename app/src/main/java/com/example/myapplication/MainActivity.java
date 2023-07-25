@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // following condition exists for the second time when button is clicked
                 if (counter > 0 && timer_check == true) {
+                    Log.d("COUNTER", "counter is:" + counter);
                     timer_check = false;
                 } else if (counter > 0 && timer_check == false) {
                     timer_check = true;
@@ -100,18 +101,15 @@ public class MainActivity extends AppCompatActivity {
                         } 
                         else { // if timer_check=false run cancel()
                             button.setText("START AGAIN"); // change text of button to Start
+                            textview.setText("Timer Ended");
                             cancel();
-                            onFinish();
                         }
                     }
                     public void onFinish() {
-                        textview.setText("Timer Ended");
+//                        textview.setText("Timer Ended");
                         startBreakTimer(); // Start the break timer automatically after the main timer ends
 
                     }
-//                    public void Break(){
-//                        onTick(300000);
-//                    }
                 }.start();
             }
         });
