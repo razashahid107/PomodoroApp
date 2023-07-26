@@ -5,6 +5,8 @@ import androidx.core.content.ContextCompat;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -50,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
                 int minutesLeft = totalSecondsLeft / 60;
                 int secondsLeft = totalSecondsLeft % 60;
                 if (secondsLeft < 10){
-                    textview.setText("Time Left: " + minutesLeft + ":" + 0 +secondsLeft);
+                    textview.setText(minutesLeft + ":" + 0 +secondsLeft);
                 }
                 else{
-                    textview.setText("Time Left: " + minutesLeft + ":" + secondsLeft);
+                    textview.setText(minutesLeft + ":" + secondsLeft);
                 }
             }
             @Override
@@ -71,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
                 int minutesLeft = totalSecondsLeft / 60;
                 int secondsLeft = totalSecondsLeft % 60;
                 if (secondsLeft < 10){
-                    textview.setText("Time Left: " + minutesLeft + ":" + 0 +secondsLeft);
+                    textview.setText(minutesLeft + ":" + 0 +secondsLeft);
                 }
                 else{
-                    textview.setText("Time Left: " + minutesLeft + ":" + secondsLeft);
+                    textview.setText(minutesLeft + ":" + secondsLeft);
                 }
             }
             @Override
@@ -136,8 +138,11 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.StartPause);
         textview = (TextView) findViewById(R.id.countdown_timer); // Timer exists in textview
         textview.setInputType(InputType.TYPE_CLASS_NUMBER);
-        textview.setText("Time Left: 300");
+        textview.setText("00:00");
+        button.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+        button.setTextColor(Color.BLACK);
 
+//
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -186,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!timer_running){ // if timer is not running
                     // start the timer
                     updateBackgroundColor(true); // change background
+
                     if(break_timer!=null){
                         break_timer.cancel();
                     }
