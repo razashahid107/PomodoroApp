@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.os.Bundle;
 import android.widget.Button;
@@ -11,8 +12,8 @@ import android.os.CountDownTimer;
 
 public class MainActivity extends AppCompatActivity {
     Button button;
-    private CountDownTimer break_timer;
-    private CountDownTimer timer;
+    private CountDownTimer break_timer = null;
+    private CountDownTimer timer = null;
 
 
     public int counter = 0; // used to record time
@@ -21,8 +22,39 @@ public class MainActivity extends AppCompatActivity {
     EditText input_space_min;
     TextView textview_sample;
 
-    boolean timer_check = true; // determines whether timer is running or not. True by default so timer can run
+    boolean timer_running = false; // determines whether timer is running or not. True by default so timer can run
     boolean break_check = false;
+
+    public void startTimer(int total_time){
+        button.setText("Start Break");
+        timer = new CountDownTimer(total_time, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                int totalSecondsLeft = (int) millisUntilFinished / 1000;
+                int minutesLeft = totalSecondsLeft / 60;
+                int secondsLeft = totalSecondsLeft % 60;
+                textview.setText("Time Left: " + minutesLeft + ":" + secondsLeft);
+            }
+            @Override
+            public void onFinish() {
+                textview.setText("Timer ended");
+            }
+        }.start();
+    }
+    public void Break(int time){
+        button.setText("End Break");
+        break_timer = new CountDownTimer(time, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                textview.setText("Break time Left: " + millisUntilFinished/1000);
+            }
+            @Override
+            public void onFinish() {
+                textview.setText("Break ended");
+            }
+        }.start();
+    }
 
 //    public void Break(){
 //        Log.d("Hey","hey there");
@@ -49,23 +81,23 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        }.start();
 //    }
-    public void startBreakTimer() {
-        if (!break_check){
-            button.setText("START TIMER");
-            break_timer.cancel();
-        }
-        int breakDuration = 5 * 60 * 1000; // 5 minutes in milliseconds
-        break_timer = new CountDownTimer(breakDuration, 1000) {
-            public void onTick(long millisUntilFinished) {
-                button.setText("END BREAK");
-                textview.setText("Break Time Left: " + millisUntilFinished / 1000);
-            }
-            public void onFinish() {
-                button.setText("START TIMER");
-                textview.setText("Break Ended");
-            }
-        }.start();
-    }
+//    public void startBreakTimer() {
+//        if (!break_check){
+//            button.setText("START TIMER");
+//            break_timer.cancel();
+//        }
+//        int breakDuration = 5 * 60 * 1000; // 5 minutes in milliseconds
+//        break_timer = new CountDownTimer(breakDuration, 1000) {
+//            public void onTick(long millisUntilFinished) {
+//                button.setText("END BREAK");
+//                textview.setText("Break Time Left: " + millisUntilFinished / 1000);
+//            }
+//            public void onFinish() {
+//                button.setText("START TIMER");
+//                textview.setText("Break Ended");
+//            }
+//        }.start();
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,12 +155,32 @@ public class MainActivity extends AppCompatActivity {
 //                    }
 //                }.start();
 
+                if (!timer_running){ // if timer is not running
+                    // start the timer
+                    if(break_timer!=null){
+                        break_timer.cancel();
+                    }
+                    int user_time_input_sec = Integer.parseInt(input_space_sec.getText().toString());
+                    int user_time_input_min = Integer.parseInt(input_space_min.getText().toString());
+                    int total_time = ((user_time_input_sec) + (user_time_input_min * 60)) * 1000;
+                    timer_running = true;
+                    startTimer(total_time);
+                } else if (timer_running) { // if user is clicking button despite timer running
+                    if (timer!=null){
+                        timer.cancel();
+                    }
+                    timer_running = false;
+                    Break(300*1000);
+//                    break_timer.cancel();
+                    button.setText("Start Timer");
+                }
+
+
                 // Access user input
-                int user_time_input_int = Integer.parseInt(input_space_sec.getText().toString());
-                int user_time_input_int_min = Integer.parseInt(input_space_min.getText().toString());
 
 
             }
         });
     }
+
 }
