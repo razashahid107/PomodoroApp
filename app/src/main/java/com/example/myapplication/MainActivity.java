@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                textview.setText("00:00");
+                textview.setText("0:00");
             }
         }.start();
     }
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                textview.setText("Break ended");
+                textview.setText("0:00");
             }
         }.start();
     }
