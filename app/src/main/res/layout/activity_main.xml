@@ -3,24 +3,28 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
 
+    android:layout_height="match_parent"
+    android:background="#D3C55542"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/StartPause"
         android:layout_width="161dp"
         android:layout_height="57dp"
+        android:background="@android:color/white"
+        android:backgroundTint="@android:color/white"
         android:text="Start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.452" />
+        app:layout_constraintVertical_bias="0.486" />
 
     <EditText
-        android:id="@+id/user_input"
+        android:id="@+id/user_input_second"
         android:layout_width="112dp"
         android:layout_height="43dp"
         android:ems="10"
@@ -29,38 +33,27 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.729"
+        app:layout_constraintHorizontal_bias="0.732"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.234" />
+        app:layout_constraintVertical_bias="0.235" />
 
     <TextView
         android:id="@+id/countdown_timer"
-        android:layout_width="339dp"
-        android:layout_height="38dp"
+        android:layout_width="252dp"
+        android:layout_height="98dp"
         android:fontFamily="sans-serif-black"
         android:lineSpacingExtra="14sp"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textColor="#FFFFFF"
+        android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.348"
-        tools:text="Timer" />
-
-    <TextView
-        android:id="@+id/text_statement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="How long do you want the timer for"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.178" />
+        app:layout_constraintVertical_bias="0.349"
+        tools:text="00:00" />
 
     <EditText
         android:id="@+id/user_input_min"
@@ -72,7 +65,7 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.307"
+        app:layout_constraintHorizontal_bias="0.264"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.235" />
