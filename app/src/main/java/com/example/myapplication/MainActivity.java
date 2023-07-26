@@ -1,6 +1,10 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
     boolean timer_running = false; // determines whether timer is running or not. True by default so timer can run
     boolean break_check = false;
 
+    public void updateBackgroundColor(boolean isTimerRunning) {
+        int colorResId = isTimerRunning ? R.color.colorTimerBackground : R.color.colorBreakBackground;
+        int color = ContextCompat.getColor(this, colorResId);
+//        Object colorFrom = null;
+//        Object colorTo = null;
+//        ObjectAnimator colorAnimation = ObjectAnimator.ofObject((Object) findViewById(R.id.activity_main_layout), "backgroundColor", new ArgbEvaluator(), colorFrom, colorTo);
+//        colorAnimation.setDuration(1000); // Adjust the duration of the animation as per your preference (in milliseconds)
+//        colorAnimation.start();
+        findViewById(R.id.activity_main_layout).setBackgroundColor(color);
+    }
+
     public void startTimer(int total_time){
         button.setText("Start Break");
         timer = new CountDownTimer(total_time, 1000) {
@@ -34,7 +49,12 @@ public class MainActivity extends AppCompatActivity {
                 int totalSecondsLeft = (int) millisUntilFinished / 1000;
                 int minutesLeft = totalSecondsLeft / 60;
                 int secondsLeft = totalSecondsLeft % 60;
-                textview.setText("Time Left: " + minutesLeft + ":" + secondsLeft);
+                if (secondsLeft < 10){
+                    textview.setText("Time Left: " + minutesLeft + ":" + 0 +secondsLeft);
+                }
+                else{
+                    textview.setText("Time Left: " + minutesLeft + ":" + secondsLeft);
+                }
             }
             @Override
             public void onFinish() {
@@ -47,7 +67,15 @@ public class MainActivity extends AppCompatActivity {
         break_timer = new CountDownTimer(time, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                textview.setText("Break time Left: " + millisUntilFinished/1000);
+                int totalSecondsLeft = (int) millisUntilFinished / 1000;
+                int minutesLeft = totalSecondsLeft / 60;
+                int secondsLeft = totalSecondsLeft % 60;
+                if (secondsLeft < 10){
+                    textview.setText("Time Left: " + minutesLeft + ":" + 0 +secondsLeft);
+                }
+                else{
+                    textview.setText("Time Left: " + minutesLeft + ":" + secondsLeft);
+                }
             }
             @Override
             public void onFinish() {
@@ -107,9 +135,9 @@ public class MainActivity extends AppCompatActivity {
         input_space_min = (EditText) findViewById(R.id.user_input_min);
         button = (Button) findViewById(R.id.StartPause);
         textview = (TextView) findViewById(R.id.countdown_timer); // Timer exists in textview
-        textview.setText("Time Left: 300");
         textview.setInputType(InputType.TYPE_CLASS_NUMBER);
-        
+        textview.setText("Time Left: 300");
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -157,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (!timer_running){ // if timer is not running
                     // start the timer
+                    updateBackgroundColor(true); // change background
                     if(break_timer!=null){
                         break_timer.cancel();
                     }
@@ -166,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
                     timer_running = true;
                     startTimer(total_time);
                 } else if (timer_running) { // if user is clicking button despite timer running
+                    updateBackgroundColor(false);
                     if (timer!=null){
                         timer.cancel();
                     }
